@@ -1,0 +1,10 @@
+{
+	"manifest_version": 2,
+	"name": "Source Overflow",
+	"description": "Automatically be linked to source documentation relevant to your problem on Stack Overflow.",
+	"version": "1.0",
+	"content_scripts": [{
+		"matches": ["http://stackoverflow.com/*", "https://stackoverflow.com/*"],
+		"js": ["jquery-3.1.1.min.js", "source.js"]
+	}]
+}
