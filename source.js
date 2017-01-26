@@ -92,18 +92,21 @@ $(document).ready( () => {
     tags.forEach(tag =>{
         if (map[tag]){
             mainTags.push(tag);
-            $('#dm-container').append('<div class = "dm-tag" + id = ' + tag + '><h3><a>' + tag +  '</a></h3></div>')
+            $('#dm-container').append('<div class = "dm-tag" + id = ' + tag + '><h3><a>' + tag + ' source docs' + '</a></h3></div>')
             let idTagA = '#' + tag + ' a';
             $(idTagA).attr('href', map[tag][0]).attr('target','_blank');
         }
         else subjects.push(tag);
     })
     //logic for subject addition
+    headline.forEach(item => {
+        if (mainTags.indexOf(item) === -1 && subjects.indexOf(item) === -1) subjects.push(item);
+    })
     for (let i = 0; i < mainTags.length; i++){
         let tagId = '#' + mainTags[i];
         subjects.forEach(subject => {
             console.log(tagId);
-            let appendVal = '<div class = "subject" id =' + subject + i  + '>' + '<a>' + subject + ' (' + 'for ' + mainTags[i] + ')' + '</a>' + '</div>'
+            let appendVal = '<div class = "dm-subject" id =' + subject + i  + '>' + '<a>' + subject + ' (' + 'for ' + mainTags[i] + ')' + '</a>' + '</div>'
             console.log(appendVal);
             $(tagId).append(appendVal)
             let idSubject = '#' + subject + i + ' a';
@@ -124,7 +127,7 @@ $(document).ready( () => {
     //logic for answer links
     if(answerLinks[0]){
         answerLinks.forEach((link, index) => {
-            $('#dm-container').append('<div class = "dm-tag" id = "answer-link' + (index + 1) + '"> <a>' + 'Link from Best Answer ' + (index+1) + '</a><div>')
+            $('#dm-container').append('<div class = "dm-tag" id = "answer-link' + (index + 1) + '"> <a>' + 'link from best answer ' + (index+1) + '</a><div>')
             let idLink = '#' + 'answer-link' + (index + 1) + ' a';
             //if(link.substring(0,3) !== 'htt') link = 'http:' + link;
             $(idLink).attr('href', link).attr('target','_blank');

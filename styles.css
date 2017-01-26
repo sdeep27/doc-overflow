@@ -3,16 +3,31 @@
     top: 150px;
     left: 5px;
     width: 200px;
-    background-color: lightblue;
+    background-color: white;
     border: 1px black solid;
     cursor: pointer;
     z-index: 1000;
+    padding: 1px;
 }
 .dm-header{
     border: 1px black solid;
+    padding: 2px;
+
+    font-size: 18px;
+    font-weight: bold;
+    color: darkorange;
 }
 .dm-tag{
     border: 1px black solid;
     display: none;
-    
+    font-size: 18px;
+    padding: 2px;
+
+}
+.dm-subject{
+    font-size: 14px;
+    padding: 2px;
+}
+a {
+    color: #07C;
 }
