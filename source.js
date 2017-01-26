@@ -79,7 +79,9 @@ $(document).ready( () => {
     'python': ['https://www.python.org/', 'python documentation'],
     'ruby-on-rails': ['http://api.rubyonrails.org/', 'api rubyonrails'],
     'express': ['https://expressjs.com/en/api.html', 'expressjs'],
-    'twitter-bootstrap': ['http://bootstrapdocs.com/v3.0.3/docs/css/#overview', 'twitter bootstrap']
+    'twitter-bootstrap': ['http://bootstrapdocs.com/v3.0.3/docs/css/#overview', 'twitter bootstrap'],
+    'git': ['https://git-scm.com/documentation', 'git documentation'],
+    'github': ['https://guides.github.com/', 'github guides']
     }
     //logic for main container
     $('body').append('<div id = "dm-container"></div>');
@@ -119,6 +121,17 @@ $(document).ready( () => {
         });
     });
     });
+    //logic for answer links
+    if(answerLinks[0]){
+        answerLinks.forEach((link, index) => {
+            $('#dm-container').append('<div class = "dm-tag" id = "answer-link' + (index + 1) + '"> <a>' + 'Link from Best Answer ' + (index+1) + '</a><div>')
+            let idLink = '#' + 'answer-link' + (index + 1) + ' a';
+            //if(link.substring(0,3) !== 'htt') link = 'http:' + link;
+            $(idLink).attr('href', link).attr('target','_blank');
+        })
+    }
+
+
     console.log('tags: ', tags);
     console.log('headline: ', headline);
     console.log('answer links: ', answerLinks);
