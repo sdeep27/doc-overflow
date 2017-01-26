@@ -55,10 +55,70 @@ $(document).ready( () => {
         return Array.from(tempSet);
     }
 
+
     tags = parseTags();
     headline = parseHeadline();
     answerLinks = parseAnswerLinks();
     sideLinks = parseSideLinks();
+
+    const map = {
+    'javascript': ['https://developer.mozilla.org/en-US/docs/Learn/JavaScript', 'mdn+js'],
+    'java': ['https://docs.oracle.com/javase/8/', 'oracle java'],
+    'php': ['http://php.net/manual/en/', 'php manual'],
+    'android': ['https://developer.android.com/guide/index.html', 'android developer'],
+    'node.js': ['https://nodejs.org/api/', 'nodejs'],
+    'ajax': ['https://developer.mozilla.org/en-US/docs/AJAX', 'mdn+ajax'],
+    'css': ['https://developer.mozilla.org/en-US/docs/Web/CSS', 'mdn+css'],
+    'jquery': ['http://api.jquery.com/', 'jquery'],
+    'ios': ['https://developer.apple.com/ios/resources/', 'apple ios'],
+    'html': ['https://developer.mozilla.org/en-US/docs/Web/HTML', 'mdn html'],
+    'angularjs': ['https://docs.angularjs.org/api', 'angularjs docs'],
+    'reactjs': ['https://facebook.github.io/react/', 'react github'],
+    'mysql': ['https://dev.mysql.com/doc/', 'mysql'],
+    'json': ['http://www.json.org/', 'json.org'],
+    'python': ['https://www.python.org/', 'python documentation'],
+    'ruby-on-rails': ['http://api.rubyonrails.org/', 'api rubyonrails'],
+    'express': ['https://expressjs.com/en/api.html', 'expressjs'],
+    'twitter-bootstrap': ['http://bootstrapdocs.com/v3.0.3/docs/css/#overview', 'twitter bootstrap']
+    }
+    //logic for main container
+    $('body').append('<div id = "dm-container"></div>');
+    $('#dm-container').append('<div class = "dm-header">Expand Source Documentation</div>');
+    const subjects = [];
+    const mainTags = [];
+    //logic for main tag addition
+    tags.forEach(tag =>{
+        if (map[tag]){
+            mainTags.push(tag);
+            $('#dm-container').append('<div class = "dm-tag" + id = ' + tag + '><h3><a>' + tag +  '</a></h3></div>')
+            let idTagA = '#' + tag + ' a';
+            $(idTagA).attr('href', map[tag][0]).attr('target','_blank');
+        }
+        else subjects.push(tag);
+    })
+    //logic for subject addition
+    for (let i = 0; i < mainTags.length; i++){
+        let tagId = '#' + mainTags[i];
+        subjects.forEach(subject => {
+            console.log(tagId);
+            let appendVal = '<div class = "subject" id =' + subject + i  + '>' + '<a>' + subject + ' (' + 'for ' + mainTags[i] + ')' + '</a>' + '</div>'
+            console.log(appendVal);
+            $(tagId).append(appendVal)
+            let idSubject = '#' + subject + i + ' a';
+            let url = 'https://google.com/search?q=' + map[mainTags[i]][1] + '+' + subject
+            $(idSubject).attr('href', url).attr('target','_blank')
+            
+
+    })
+    }
+    //logic for nice expand and collapse
+    $(".dm-header").click(function () {
+    $('.dm-tag').slideToggle(500, function () {
+        $('.dm-header').text(function () {
+            return $('.dm-tag').is(":visible") ? "Collapse Source Documentation" : "Expand Source Documentation";
+        });
+    });
+    });
     console.log('tags: ', tags);
     console.log('headline: ', headline);
     console.log('answer links: ', answerLinks);
