@@ -11,7 +11,13 @@ $(document).ready( () => {
     function parseTags () {
         let arr = [];
         $('body').find('.post-tag').each(function(el) {
-            arr.push($(this).text());
+            let item = $(this).text();
+            console.log('before: ', item);
+            item = item.replace(/\./g, '');
+            item = item.replace(/\+/g, 'p');
+            item = item.replace(/\#/g, '-sharp');
+            console.log('after: ', item);
+            arr.push(item);
         });
         tempSet = new Set(arr);
         return Array.from(tempSet);
@@ -41,7 +47,8 @@ $(document).ready( () => {
     function parseAnswerLinks () {
         let arr = [];
         $('body').find('.accepted-answer').find('.post-text').find('a').each(function(el) {
-            arr.push($(this).attr('href'));
+            let item = $(this).attr('href');
+            arr.push(item);
         });
         tempSet = new Set(arr);
         return Array.from(tempSet);
@@ -62,26 +69,36 @@ $(document).ready( () => {
     sideLinks = parseSideLinks();
 
     const map = {
-    'javascript': ['https://developer.mozilla.org/en-US/docs/Learn/JavaScript', 'mdn+js'],
-    'java': ['https://docs.oracle.com/javase/8/', 'oracle java'],
-    'php': ['http://php.net/manual/en/', 'php manual'],
-    'android': ['https://developer.android.com/guide/index.html', 'android developer'],
-    'node.js': ['https://nodejs.org/api/', 'nodejs'],
-    'ajax': ['https://developer.mozilla.org/en-US/docs/AJAX', 'mdn+ajax'],
-    'css': ['https://developer.mozilla.org/en-US/docs/Web/CSS', 'mdn+css'],
-    'jquery': ['http://api.jquery.com/', 'jquery'],
-    'ios': ['https://developer.apple.com/ios/resources/', 'apple ios'],
-    'html': ['https://developer.mozilla.org/en-US/docs/Web/HTML', 'mdn html'],
-    'angularjs': ['https://docs.angularjs.org/api', 'angularjs docs'],
-    'reactjs': ['https://facebook.github.io/react/', 'react github'],
-    'mysql': ['https://dev.mysql.com/doc/', 'mysql'],
-    'json': ['http://www.json.org/', 'json.org'],
-    'python': ['https://www.python.org/', 'python documentation'],
-    'ruby-on-rails': ['http://api.rubyonrails.org/', 'api rubyonrails'],
-    'express': ['https://expressjs.com/en/api.html', 'expressjs'],
-    'twitter-bootstrap': ['http://bootstrapdocs.com/v3.0.3/docs/css/#overview', 'twitter bootstrap'],
-    'git': ['https://git-scm.com/documentation', 'git documentation'],
-    'github': ['https://guides.github.com/', 'github guides']
+        'javascript': ['https://developer.mozilla.org/en-US/docs/Learn/JavaScript', 'mdn+js'],
+        'java': ['https://docs.oracle.com/javase/8/', 'oracle java'],
+        'php': ['http://php.net/manual/en/', 'php manual'],
+        'android': ['https://developer.android.com/guide/index.html', 'android developer'],
+        'nodejs': ['https://nodejs.org/api/', 'nodejs'],
+        'ajax': ['https://developer.mozilla.org/en-US/docs/AJAX', 'mdn+ajax'],
+        'css': ['https://developer.mozilla.org/en-US/docs/Web/CSS', 'mdn+css'],
+        'jquery': ['http://api.jquery.com/', 'jquery'],
+        'ios': ['https://developer.apple.com/ios/resources/', 'apple ios'],
+        'html': ['https://developer.mozilla.org/en-US/docs/Web/HTML', 'mdn html'],
+        'angularjs': ['https://docs.angularjs.org/api', 'angularjs docs'],
+        'reactjs': ['https://facebook.github.io/react/', 'react github'],
+        'mysql': ['https://dev.mysql.com/doc/', 'mysql'],
+        'json': ['http://www.json.org/', 'json.org'],
+        'python': ['https://www.python.org/', 'python documentation'],
+        'ruby-on-rails': ['http://api.rubyonrails.org/', 'api rubyonrails'],
+        'express': ['https://expressjs.com/en/api.html', 'expressjs'],
+        'twitter-bootstrap': ['http://bootstrapdocs.com/v3.0.3/docs/css/#overview', 'twitter bootstrap'],
+        'git': ['https://git-scm.com/documentation', 'git documentation'],
+        'github': ['https://guides.github.com/', 'github guides'],
+        'cpp': ['http://en.cppreference.com/', 'cpp reference'],
+        'c-sharp': ['https://msdn.microsoft.com/en-us/library/618ayhy6.aspx', 'c-sharp reference'],
+        'c': ['https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html', 'c reference'],
+        'objective-c': ['https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html', 'objective-c reference'],
+        'swift': ['https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/', 'swift, apple'],
+        'haskell': ['https://www.haskell.org/', 'haskell.org'],
+        'fortran': ['https://www.fortran.com/F77_std/rjcnf0001.html', 'fortran F77'],
+        'matlab': ['https://www.mathworks.com/help/matlab/?requestedDomain=www.mathworks.com', 'matlab reference'],
+        'wolfram-mathematica': ['http://reference.wolfram.com/language/', 'wolfram mathematica'], 
+
     }
     //logic for main container
     $('body').append('<div id = "dm-container"></div>');
