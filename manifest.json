@@ -1,11 +1,16 @@
 {
 	"manifest_version": 2,
-	"name": "Source Overflow",
+	"name": "Doc Overflow",
 	"description": "Automatically be linked to source documentation relevant to your problem on Stack Overflow.",
 	"version": "1.0",
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+  	},
 	"content_scripts": [{
 		"matches": ["http://stackoverflow.com/*", "https://stackoverflow.com/*"],
 		"js": ["jquery-3.1.1.min.js", "source.js"],
 		"css": ["styles.css"]
 	}]
+	
 }

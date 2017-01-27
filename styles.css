@@ -3,14 +3,13 @@
     top: 150px;
     left: 5px;
     width: 200px;
-    background-color: white;
-    border: 1px solid black;
+    background-color: #FEFEFE;
+    border: 1px solid silver;
     border-radius: 2px;
     cursor: pointer;
     z-index: 1000;
-    padding: 1px;
-    padding-left: 5px;
-    opacity: 0.85;
+    padding: 10px;
+    /*padding-left: 5px;*/
 }
 .dm-header{
     border: none;
@@ -38,4 +37,12 @@ a {
 .dm-group {
     font-size: 10px;
     color: gray;
+}
+
+hr {
+    margin-top: 20px;
+}
+
+#dm-best-answer a:hover {
+    color: #07C;
 }
