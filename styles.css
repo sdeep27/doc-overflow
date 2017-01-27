@@ -3,31 +3,46 @@
     top: 150px;
     left: 5px;
     width: 200px;
-    background-color: white;
-    border: 1px black solid;
+    background-color: #FEFEFE;
+    border: 1px solid silver;
+    border-radius: 2px;
     cursor: pointer;
     z-index: 1000;
-    padding: 1px;
+    padding: 10px;
+    /*padding-left: 5px;*/
 }
 .dm-header{
-    border: 1px black solid;
+    border: none;
+    border-radius: 2px;
     padding: 2px;
-
+    /*text-align: center;*/
     font-size: 18px;
     font-weight: bold;
     color: darkorange;
 }
 .dm-tag{
-    border: 1px black solid;
+    border: none;
+    border-radius: 2px;
     display: none;
-    font-size: 18px;
-    padding: 2px;
-
+    font-size: 14px;
 }
 .dm-subject{
     font-size: 14px;
     padding: 2px;
 }
 a {
+    color: #07C;
+}
+
+.dm-group {
+    font-size: 10px;
+    color: gray;
+}
+
+hr {
+    margin-top: 20px;
+}
+
+#dm-best-answer a:hover {
     color: #07C;
 }
