@@ -103,15 +103,17 @@ $(document).ready( () => {
     //logic for main container
     $('body').append('<div id = "dm-container"></div>');
     $('#dm-container').append('<div class = "dm-header">Expand Source Documentation</div>');
+    $('#dm-container').append('<hr class = "dm-tag" width=80%>');
     const subjects = [];
     const mainTags = [];
     //logic for main tag addition
-    tags.forEach(tag =>{
+    tags.forEach(tag => {
         if (map[tag]){
             mainTags.push(tag);
             $('#dm-container').append('<div class = "dm-tag" + id = ' + tag + '><h3><a>' + tag + ' source docs' + '</a></h3></div>')
             let idTagA = '#' + tag + ' a';
             $(idTagA).attr('href', map[tag][0]).attr('target','_blank');
+            $('#dm-container').append('<hr class = "dm-tag" width=80%>');
         }
         else subjects.push(tag);
     })
@@ -123,7 +125,7 @@ $(document).ready( () => {
         let tagId = '#' + mainTags[i];
         subjects.forEach(subject => {
             console.log(tagId);
-            let appendVal = '<div class = "dm-subject" id =' + subject + i  + '>' + '<a>' + subject + ' (' + 'for ' + mainTags[i] + ')' + '</a>' + '</div>'
+            let appendVal = '<div class = "dm-subject" id =' + subject + i  + '>' + '<a>' + subject + '<span class = "dm-group">' + ' (' + mainTags[i] + ')' + '</span>' + '</a>' + '</div>'
             console.log(appendVal);
             $(tagId).append(appendVal)
             let idSubject = '#' + subject + i + ' a';
