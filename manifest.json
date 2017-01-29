@@ -11,6 +11,6 @@
 		"matches": ["http://stackoverflow.com/*", "https://stackoverflow.com/*"],
 		"js": ["jquery-3.1.1.min.js", "source.js"],
 		"css": ["styles.css"]
-	}]
-	
+	}],
+	"permissions": ["https://developer.mozilla.org/*", "https://google.com/*"]
 }

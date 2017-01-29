@@ -1,7 +1,7 @@
 #dm-container {
     position: absolute;
-    top: 150px;
-    left: 5px;
+    top: 120px;
+    left: 10px;
     width: 200px;
     background-color: #FEFEFE;
     border: 1px solid silver;
@@ -9,13 +9,13 @@
     cursor: pointer;
     z-index: 1000;
     padding: 10px;
-    /*padding-left: 5px;*/
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 .dm-header{
     border: none;
     border-radius: 2px;
     padding: 2px;
-    /*text-align: center;*/
     font-size: 18px;
     font-weight: bold;
     color: darkorange;
