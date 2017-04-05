@@ -13,11 +13,9 @@ $(document).ready( () => {
         let arr = [];
         $('body').find('.post-tag').each(function(el) {
             let item = $(this).text();
-            console.log('before: ', item);
             item = item.replace(/\./g, '');
             item = item.replace(/\+/g, 'p');
             item = item.replace(/\#/g, '-sharp');
-            console.log('after: ', item);
             arr.push(item);
         });
         tempSet = new Set(arr);
@@ -126,9 +124,7 @@ $(document).ready( () => {
     for (let i = 0; i < mainTags.length; i++){
         let tagId = '#' + mainTags[i];
         subjects.forEach(subject => {
-            console.log(tagId);
             let appendVal = '<div class = "dm-subject" id =' + subject + i  + '>' + '<a>' + subject + '<span class = "dm-group">' + ' (' + mainTags[i] + ')' + '</span>' + '</a>' + '</div>'
-            console.log(appendVal);
             $(tagId).append(appendVal)
             let idSubject = '#' + subject + i + ' a';
             let url = 'https://google.com/search?q=' + map[mainTags[i]][1] + '+' + subject
@@ -149,18 +145,30 @@ $(document).ready( () => {
     $('#dm-container').append('<div class = "dm-tag" id="dm-best-answer"><h3><a href="#">links from best answer</a></h3><div>'); 
     if(answerLinks[0]){
         answerLinks.forEach((link, index) => {
-            // $('#dm-container').append('<div class = "dm-tag" id = "answer-link' + (index + 1) + '"> <a>' + 'link from best answer ' + (index+1) + '</a><div>');
             $('#dm-container').append('<div class = "dm-tag" id = "answer-link' + (index + 1) + '"> <a>' + answerLinksText[index] + '</a><div>');            
             let idLink = '#' + 'answer-link' + (index + 1) + ' a';
-            //if(link.substring(0,3) !== 'htt') link = 'http:' + link;
             $(idLink).attr('href', link).attr('target','_blank');
         })
     }
 
+    let xhr = new XMLHttpRequest();
+    // let parseUrl = 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference';
+    let parseUrl = 'https://google.com/search?q=' + map['javascript'][1] + '+' + 'object';
+    xhr.open("GET", parseUrl, true);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4) {
+            let googleHtml = xhr.responseText;
+            let link = $(googleHtml).find('.g').first().find('a').attr('href');
+            console.log(link);
+            $('#dm-container').append('<div class = "dm-tag" id = "testObj"><a>TestObject</a></div>');
+            $('#testObj > a').attr('href', link).attr('target', '_blank');
+        }
+    };
+    xhr.send();
 
-    console.log('tags: ', tags);
-    console.log('headline: ', headline);
-    console.log('answer links: ', answerLinks);
+    
+    // console.log('tags: ', tags);
+    // console.log('headline: ', headline);
+    // console.log('answer links: ', answerLinks);
     // console.log('side links: ', sideLinks);
-
 });
